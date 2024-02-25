@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "run-s build:wasm build:js",
+    "build:js": "tsc && vite build",
+    "build:wasm": "cd wasm && wasm-pack build --target web --release",
     "preview": "vite preview",
     "lint:es": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "lint:es:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}'",
@@ -22,9 +24,11 @@
     "gif.js": "^0.2.0",
     "jszip": "^3.10.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.1"
   },
   "devDependencies": {
+    "@types/css-modules": "^1.0.5",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
@@ -65,5 +69,8 @@
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
-  }
+  },
+  "sideEffects": [
+    "*.css"
+  ]
 }
