@@ -1,3 +1,5 @@
 {
-  "buildCommand": "bash vercel_build.sh"
+  "builds": [
+    { "src": "vercel-build.sh", "use": "@vercel/build-utils/bash" }
+  ]
 }
